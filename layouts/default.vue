@@ -44,7 +44,7 @@
 
 <!-- main page structure -->
 <template>
-  <div>
+  <div class="sans-serif">
     <TheHeader />
     <NuxtPage />
     <TheFooter />
