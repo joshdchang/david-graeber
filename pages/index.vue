@@ -60,23 +60,23 @@
           </div>
 
           <!-- content blocks -->
-          <div class="grid overflow-hidden rounded lg:rounded-xl">
+          <div class="grid overflow-hidden rounded lg:rounded-xl content-block-container">
             <div v-for="(block, index) in content_blocks" class="grid items-center lg:grid-cols-2">
               <template v-if="index % 2 === 0">
                 <div
-                  class="flex flex-col items-start justify-center h-full py-10 pl-10 pr-10 sm:py-14 sm:pl-14 sm:pr-14 md:py-16 md:pl-16 md:pr-16 space-y-4 bg-white lg:py-0">
+                  class="flex flex-col items-start justify-center h-full py-10 pl-10 pr-10 sm:py-14 sm:pl-14 sm:pr-14 md:py-16 md:pl-16 md:pr-16 bg-white">
                   <DynamicText :content="block.content"></DynamicText>
                 </div>
-                <div class="overflow-hidden bg-gray-100 h-96">
+                <div class="overflow-hidden h-96">
                   <TheImage :asset="block.image" class="object-cover w-full h-full" alt="" />
                 </div>
               </template>
               <template v-if="index % 2 === 1">
-                <div class="order-last overflow-hidden bg-gray-100 h-96 lg:order-first">
+                <div class="order-last overflow-hidden h-96 lg:order-first">
                   <TheImage :asset="block.image" class="object-cover w-full h-full" alt="" />
                 </div>
                 <div
-                  class="flex flex-col items-start justify-center h-full py-10 pl-10 pr-10 sm:py-14 sm:pl-14 sm:pr-14 md:py-16 md:pl-16 md:pr-16 space-y-4 bg-white lg:py-0">
+                  class="flex flex-col items-start justify-center h-full py-10 pl-10 pr-10 sm:py-14 sm:pl-14 sm:pr-14 md:py-16 md:pl-16 md:pr-16 bg-white">
                   <DynamicText :content="block.content"></DynamicText>
                 </div>
               </template>
@@ -138,5 +138,8 @@
 
   .button {
     letter-spacing: 0.12rem;
+  }
+  .content-block-container {
+    @apply bg-gray-200;
   }
 </style>
