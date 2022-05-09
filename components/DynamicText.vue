@@ -132,4 +132,10 @@
   .dt.theme-sans h3 {
     @apply text-xl;
   }
+
+  /* mixed header fonts */
+  .dt.theme-mixed h2,
+  .dt.theme-mixed h3 {
+    @apply sans-serif font-medium text-gray-500;
+  }
 </style>

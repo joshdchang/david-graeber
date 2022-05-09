@@ -56,7 +56,7 @@
 
           <!-- header -->
           <div class="px-2 sm:px-4 md:px-8 lg:px-0 lg:text-center pb-14 sm:pb-20 md:pb-26 lg:pb-32">
-            <DynamicText :content="home.content_title"></DynamicText>
+            <DynamicText :content="home.content_title" theme="theme-mixed"></DynamicText>
           </div>
 
           <!-- content blocks -->
