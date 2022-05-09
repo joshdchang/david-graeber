@@ -51,11 +51,11 @@
       </div>
       <div
         class="box-border flex flex-col items-center px-6 sm:px-8 mx-auto border-solid max-w-7xl xl:px-16 md:items-stretch md:justify-center">
-        <div class="z-10 grid gap-5 md:grid-cols-6 lg:grid-cols-9">
+        <div class="z-10 grid gap-5">
           <!-- Feature 1 -->
-          <div v-for="block of resource_blocks" class="col-span-3 text-gray-700 bg-gray-100 rounded">
+          <div v-for="block of resource_blocks" class="text-gray-700 bg-gray-100 rounded sm:rounded-lg lg:rounded-xl">
             <div
-              class="box-border flex flex-col items-start h-full px-2 py-8 mx-4 text-center border-solid sm:flex-row sm:items-start sm:text-left">
+              class="box-border flex flex-col items-start h-full px-4 sm:px-8 md:px-16 lg:px-20 py-8 sm:py-14 md:py-18 lg:py-24 mx-4 text-center border-solid sm:flex-row sm:items-start sm:text-left">
               <div class="text-gray-700 border border-gray-200 rounded-full" style="padding: 0.8rem; padding-bottom: 0.4rem;">
                 <span class="material-symbols-outlined">
                   {{ block.icon }}

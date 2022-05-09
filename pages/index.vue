@@ -67,13 +67,13 @@
                   class="flex flex-col items-start justify-center h-full py-10 pl-10 pr-10 sm:py-14 sm:pl-14 sm:pr-14 md:py-16 md:pl-16 md:pr-16 bg-white">
                   <DynamicText :content="block.content"></DynamicText>
                 </div>
-                <div class="overflow-hidden h-96">
-                  <TheImage :asset="block.image" class="object-cover w-full h-full" alt="" />
+                <div class="overflow-hidden">
+                  <TheImage :asset="block.image" class="object-cover w-full" alt="" />
                 </div>
               </template>
               <template v-if="index % 2 === 1">
-                <div class="order-last overflow-hidden h-96 lg:order-first">
-                  <TheImage :asset="block.image" class="object-cover w-full h-full" alt="" />
+                <div class="order-last overflow-hidden lg:order-first">
+                  <TheImage :asset="block.image" class="object-cover w-full" alt="" />
                 </div>
                 <div
                   class="flex flex-col items-start justify-center h-full py-10 pl-10 pr-10 sm:py-14 sm:pl-14 sm:pr-14 md:py-16 md:pl-16 md:pr-16 bg-white">
