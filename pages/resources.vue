@@ -76,8 +76,8 @@
         <h3 class="mt-1 mb-10 text-3xl font-bold text-left text-gray-100 sm:text-4xl md:text-5xl serif">Frequently Asked Questions</h3>
 
         <div v-for="block of faq_blocks"
-          class="flex flex-col w-full py-6 mx-auto mt-4 sm:mt-10 border-t border-gray-700 md:grid md:grid-flow-col sm:py-8">
-          <h3 class="mb-2 mr-10 text-lg font-medium text-gray-200 md:mb-0 sm:text-xl md:text-lg w-72">{{ block.question }}</h3>
+          class="flex flex-col w-full py-6 mx-auto mt-4 sm:mt-10 border-t border-gray-700 md:grid md:grid-cols-[20rem_auto] sm:py-8">
+          <h3 class="mb-2 mr-10 text-lg font-medium text-gray-200 md:mb-0 sm:text-xl md:text-lg">{{ block.question }}</h3>
           <p class="text-base text-gray-400 sm:text-lg md:text-normal">{{ block.answer }}</p>
         </div>
       </div>
