@@ -1,6 +1,5 @@
 <script lang="ts" setup>
   import '/assets/index.css'
-
   useHead({
     viewport: 'width=device-width, initial-scale=1, maximum-scale=1',
     charset: 'utf-8',
@@ -39,11 +38,13 @@
       { name: 'theme-color', content: '#ffffff' }
     ],
   })
-
 </script>
 
 <!-- main page structure -->
 <template>
+  <Head>
+    <Title>David C. Graeber</Title>
+  </Head>
   <div class="sans-serif">
     <TheHeader />
     <NuxtPage />
