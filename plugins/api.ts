@@ -1,6 +1,7 @@
 export default defineNuxtPlugin(nuxtApp => {
 
   let directus = 'https://david-graeber.up.railway.app'
+  let cache = {}
 
   return {
     provide: {
@@ -8,7 +9,13 @@ export default defineNuxtPlugin(nuxtApp => {
       api: async (collections) => {
         let fetchPromises = []
         for (let collection of collections) {
-          fetchPromises.push($fetch(directus + '/items/' + collection))
+          if (cache[collection]) {
+            fetchPromises.push(cache[collection])
+          } else {
+            let req = $fetch(directus + '/items/' + collection)
+            fetchPromises.push(req)
+            cache[collection] = req
+          }
         }
         let responses = await Promise.all(fetchPromises)
         let keyedResponses = {}
