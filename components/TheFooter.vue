@@ -1,6 +1,6 @@
 <!-- get data from Directus -->
 <script setup>
-  const { data: settings, pending } = await useFetch('/api/settings')
+  const { settings } = await useNuxtApp().$api(['settings'])
 </script>
 
 <!-- component -->
@@ -9,24 +9,24 @@
     <div class="container flex flex-col items-center px-8 py-8 mx-auto max-w-7xl sm:flex-row">
 
       <!-- if data loaded -->
-      <template v-if="!pending">
+      <template>
 
         <!-- name -->
         <NuxtLink to="/" class="text-xl font-bold leading-none text-white select-none uppercase">
-          {{ settings.data.footer_name }}
+          {{ settings.footer_name }}
         </NuxtLink>
 
         <!-- copyright + admin login -->
         <p class="mt-4 text-sm sm:ml-4 sm:pl-4 sm:border-l sm:border-gray-200 sm:mt-0 text-gray-400 sans-serif">
           Copyright © {{ new Date().getFullYear() }}
-          {{ settings.data.footer_name }}
+          {{ settings.footer_name }}
           • 
-          <a class="underline" href="https://david-graeber.up.railway.app/admin/" target="_blank">Admin Login</a>
+          <a class="underline" :href="$directus" target="_blank">Admin Login</a>
         </p>
 
         <!-- social -->
         <span class="inline-flex justify-center mt-4 space-x-5 sm:ml-auto sm:mt-0 sm:justify-start">
-          <a v-if="settings.data.facebook" :href="settings.data.facebook" class="text-white hover:text-gray-300" target="_blank">
+          <a v-if="settings.facebook" :href="settings.facebook" class="text-white hover:text-gray-300" target="_blank">
             <span class="sr-only">Facebook</span>
             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path
@@ -35,7 +35,7 @@
               clip-rule="evenodd" />
             </svg>
           </a>
-          <a v-if="settings.data.instagram" :href="settings.data.instagram" class="text-white hover:text-gray-300" target="_blank">
+          <a v-if="settings.instagram" :href="settings.instagram" class="text-white hover:text-gray-300" target="_blank">
             <span class="sr-only">Instagram</span>
             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path
@@ -44,7 +44,7 @@
               clip-rule="evenodd" />
             </svg>
           </a>
-          <a v-if="settings.data.twitter" :href="settings.data.twitter" class="text-white hover:text-gray-300" target="_blank">
+          <a v-if="settings.twitter" :href="settings.twitter" class="text-white hover:text-gray-300" target="_blank">
             <span class="sr-only">Twitter</span>
             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path

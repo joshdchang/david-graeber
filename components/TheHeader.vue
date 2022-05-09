@@ -1,8 +1,7 @@
 
 <!-- get data from Directus -->
 <script setup>
-  const { data: settings } = await useFetch('/api/settings')
-  const { data: header } = await useFetch('/api/header')
+  const { settings, header } = await useNuxtApp().$api(['settings', 'header'])
 </script>
 
 <!-- component -->
@@ -19,7 +18,7 @@
 
           <!-- nav links -->
           <nav class="flex flex-wrap items-center text-base md:ml-auto header-nav text-gray-200 sm:text-white">
-            <template v-for="item of header.data">
+            <template v-for="item of header">
               <NuxtLink v-if="item.type === 'page'" :to="item.page" class="font-medium hover:text-gray-300 uppercase header-link">
                 {{ item.name }}
               </NuxtLink>
@@ -34,7 +33,7 @@
 
           <!-- name -->
           <NuxtLink to="/" class="header-name flex items-center order-first mb-2 sm:mb-4 font-bold text-lg md:mb-0 serif uppercase">
-            {{ settings.data.header_name }}
+            {{ settings.header_name }}
           </NuxtLink>
 
         </div>

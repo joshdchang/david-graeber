@@ -1,27 +1,23 @@
 <!--get data from Directus -->
 <script setup>
-  const { data: blog, pending: p1 } = await useFetch('/api/blog')
-  const { data: articles, pending: p2 } = await useFetch('/api/articles')
-
-  if (typeof window.scrollTo === 'function') {
-    window.scrollTo(0, 0)
-  }
+  const { blog, articles } = await useNuxtApp().$api(['blog', 'articles'])
+  useNuxtApp().$scrollTop()
 </script>
 
 <!-- page -->
 <template>
-  <div v-if="!p1 && !p2">
+  <div>
 
     <Head>
-      <Title>{{blog.data.title}} - David C. Graeber</Title>
+      <Title>{{blog.title}} - David C. Graeber</Title>
     </Head>
 
     <!-- top header -->
-    <PageTop :heading="blog.data.title" :image="blog.data.banner"></PageTop>
+    <PageTop :heading="blog.title" :image="blog.banner"></PageTop>
 
     <!-- articles -->
     <section class="w-full bg-white my-10 sm:my-14 md:my-18 lg:my-24 xl:my-30">
-      <div v-for="article of articles.data" class="max-w-3xl mx-auto serif">
+      <div v-for="article of articles" class="max-w-3xl mx-auto serif">
         <div class="pb-10 md:mt-10 lg:mt-14 border-b md:px-8 md:pb-12 lg:pb-16 border-gray-150">
           <NuxtLink :to="'/blog/' + article.id">
             <span class="block mb-8 sm:mb-9 md:mb-10">

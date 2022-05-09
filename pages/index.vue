@@ -1,7 +1,6 @@
 <!-- get data from Directus -->
 <script setup>
-  const { data: home, pending: p1 } = await useFetch('/api/home')
-  const { data: content_blocks, pending: p2 } = await useFetch('/api/content_blocks')
+  const { home, content_blocks } = await useNuxtApp().$api(['home', 'content_blocks'])
 
   let email = ref('')
   let invalid = ref(false)
@@ -23,9 +22,7 @@
     }
   }
 
-  if (typeof window.scrollTo === 'function') {
-    window.scrollTo(0, 0)
-  }
+  useNuxtApp().$scrollTop()
 </script>
 
 <!-- component -->
@@ -36,10 +33,10 @@
       <Title>David C. Graeber</Title>
     </Head>
 
-    <div v-if="!p1 && !p2">
+    <div>
       <!-- banner -->
       <section class="h-screen main"
-        :style="{ backgroundImage: 'url(https://david-graeber.up.railway.app/assets/' + home.data.banner + ')' }">
+        :style="{ backgroundImage: 'url(' + $directus + '/assets/' + home.banner + ')' }">
       </section>
 
       <!-- overlay -->
@@ -49,7 +46,7 @@
       <section
         class="text-white text-center absolute bottom-12 sm:bottom-16 md:bottom-20 lg:bottom-24 left-12 sm:left-16 md:left-20 lg:left-24 right-12 sm:right-16 md:right-20 lg:right-24">
         <p class="serif front-text text-2xl sm:text-3xl lg:text-4xl xl:text-5xl">
-          {{ home.data.banner_text }}
+          {{ home.banner_text }}
         </p>
       </section>
 
@@ -59,12 +56,12 @@
 
           <!-- header -->
           <div class="px-2 sm:px-4 md:px-8 lg:px-0 lg:text-center pb-14 sm:pb-20 md:pb-26 lg:pb-32">
-            <DynamicText :content="home.data.content_title"></DynamicText>
+            <DynamicText :content="home.content_title"></DynamicText>
           </div>
 
           <!-- content blocks -->
           <div class="grid overflow-hidden rounded lg:rounded-xl">
-            <div v-for="(block, index) in content_blocks.data" class="grid items-center lg:grid-cols-2">
+            <div v-for="(block, index) in content_blocks" class="grid items-center lg:grid-cols-2">
               <template v-if="index % 2 === 0">
                 <div
                   class="flex flex-col items-start justify-center h-full py-10 pl-10 pr-10 sm:py-14 sm:pl-14 sm:pr-14 md:py-16 md:pl-16 md:pr-16 space-y-4 bg-white lg:py-0">
@@ -89,10 +86,10 @@
       </section>
 
       <!-- newsletter -->
-      <section v-if="home.data.enable_newsletter" class="py-12 sm:py-20 md:py-30 lg:py-36 bg-white mb-5">
+      <section v-if="home.enable_newsletter" class="py-12 sm:py-20 md:py-30 lg:py-36 bg-white mb-5">
         <div class="max-w-3xl px-10 mx-auto xl:px-5">
           <div class="flex flex-col justify-center space-y-8">
-            <DynamicText :content="home.data.newsletter_title"></DynamicText>
+            <DynamicText :content="home.newsletter_title"></DynamicText>
             <div v-if="!submitted" class="flex flex-col w-full mx-auto space-y-5 md:space-y-0 md:space-x-5 md:flex-row">
               <input
                 v-model="email"

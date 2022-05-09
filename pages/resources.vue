@@ -1,9 +1,7 @@
 <!-- get data from Directus -->
 <script setup>
 
-  const { data: resources, pending: p1 } = await useFetch('/api/resources')
-  const { data: resource_blocks, pending: p2 } = await useFetch('/api/resource_blocks')
-  const { data: faq_blocks, pending: p3 } = await useFetch('/api/faq_blocks')
+  const { resources, resource_blocks, faq_blocks } = await useNuxtApp().$api(['resources', 'resource_blocks', 'faq_blocks'])
 
   let email = ref('')
   let name = ref('')
@@ -29,35 +27,33 @@
     }
   }
 
-  if (typeof window.scrollTo === 'function') {
-    window.scrollTo(0, 0)
-  }
+  useNuxtApp().$scrollTop()
 </script>
 
 <!-- page -->
 <template>
 
-  <div v-if="!p1 & !p2 & !p3">
+  <div>
 
     <Head>
-      <Title>{{resources.data.title}} - David C. Graeber</Title>
+      <Title>{{resources.title}} - David C. Graeber</Title>
     </Head>
 
-    <PageTop :heading="resources.data.title" :image="resources.data.banner"></PageTop>
+    <PageTop :heading="resources.title" :image="resources.banner"></PageTop>
 
     <!-- resources section -->
     <section
       class="mb-5 box-border relative w-full text-gray-700 bg-white border-0 border-gray-200 border-solid py-10 sm:py-16 md:py-22 lg:py-28">
       <!-- header -->
-      <div v-if="resources.data.resources_title"
+      <div v-if="resources.resources_title"
         class="px-8 sm:px-12 mx-auto md:px-8 lg:px-0 md:text-center pb-10 sm:pb-14 md:pb-18 lg:pb-24">
-        <DynamicText :content="resources.data.resources_title"></DynamicText>
+        <DynamicText :content="resources.resources_title"></DynamicText>
       </div>
       <div
         class="box-border flex flex-col items-center px-6 sm:px-8 mx-auto border-solid max-w-7xl xl:px-16 md:items-stretch md:justify-center">
         <div class="z-10 grid gap-5 md:grid-cols-6 lg:grid-cols-9">
           <!-- Feature 1 -->
-          <div v-for="block of resource_blocks.data" class="col-span-3 text-gray-700 bg-gray-100 rounded">
+          <div v-for="block of resource_blocks" class="col-span-3 text-gray-700 bg-gray-100 rounded">
             <div
               class="box-border flex flex-col items-start h-full px-2 py-8 mx-4 text-center border-solid sm:flex-row sm:items-start sm:text-left">
               <div class="text-gray-700 border border-gray-200 rounded-full" style="padding: 0.8rem; padding-bottom: 0.4rem;">
@@ -79,7 +75,7 @@
       <div class="max-w-6xl px-8 sm:px-12 mx-auto">
         <h3 class="mt-1 mb-10 text-3xl font-bold text-left text-gray-100 sm:text-4xl md:text-5xl serif">Frequently Asked Questions</h3>
 
-        <div v-for="block of faq_blocks.data"
+        <div v-for="block of faq_blocks"
           class="flex flex-col w-full py-6 mx-auto mt-4 sm:mt-10 border-t border-gray-700 md:grid md:grid-flow-col sm:py-8">
           <h3 class="mb-2 mr-10 text-lg font-medium text-gray-200 md:mb-0 sm:text-xl md:text-lg w-72">{{ block.question }}</h3>
           <p class="text-base text-gray-400 sm:text-lg md:text-normal">{{ block.answer }}</p>
@@ -91,7 +87,7 @@
     <div class="bg-white py-5 sm:py-16 md:py-24 lg:py-28">
       <div class="px-6 sm:px-10 mx-auto max-w-7xl md:px-16 mb-10">
         <div class="max-w-3xl mx-auto mb-10 md:mb-16">
-          <DynamicText :content="resources.data.contact_title"></DynamicText>
+          <DynamicText :content="resources.contact_title"></DynamicText>
         </div>
         <section class="grid max-w-3xl gap-4 mx-auto" v-if="!submitted">
           <div>
