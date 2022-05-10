@@ -1,5 +1,6 @@
 <!-- get data from Directus -->
 <script setup>
+
   const { home, content_blocks } = await useNuxtApp().$api(['home', 'content_blocks'])
 
   let email = ref('')
