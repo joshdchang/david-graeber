@@ -9,7 +9,7 @@
   <div>
 
     <Head>
-      <Title>{{blog.title}} - David C. Graeber</Title>
+      <Title>{{ blog.title }} - David C. Graeber</Title>
     </Head>
 
     <!-- top header -->
