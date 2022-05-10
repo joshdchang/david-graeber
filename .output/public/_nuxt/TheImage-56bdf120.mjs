@@ -1,0 +1,1 @@
+import{_ as o,o as n,c,f as _}from"./entry-cdbec1dd.mjs";const a={props:["asset"],setup(e,{expose:r}){r();const s={props:e};return Object.defineProperty(s,"__isScriptSetup",{enumerable:!1,value:!0}),s}},p=["src"];function u(e,r,t,s,i,m){return t.asset?(n(),c("img",{key:0,src:e.$directus+"/assets/"+t.asset},null,8,p)):_("",!0)}var f=o(a,[["render",u]]);export{f as _};
